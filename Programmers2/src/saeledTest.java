@@ -1,27 +1,37 @@
 public class saeledTest {
     public static void main(String[] args) {
 
-        Drink<Coke> dc = new Drink<>(new Coke()); //선언된 항목을 넣어주기
-        Drink<Juice> dj = new Drink<>(new Juice());
+//        Drink<Coke> dc = new Drink<>(new Coke()); //선언된 항목을 넣어주기
+//        Drink<Juice> dj = new Drink<>(new Juice());
 //        Drink<Pesticide> dp = new Drink<>(new Pesticide()); //자식 타입이 아니므로 오류가 발생한다.
 
 
-        dc.drink();
-        dj.drink();
+        Drink d1 = new Drink(new Coke());
+        Drink d2 = new Drink(new Juice());
+ //       Drink d3 = new Drink(new Pesticide()); //오류가 발생한다.
+
+        d1.drink();
+        d2.drink();
+
+//        dc.drink();
+//        dj.drink();
 //        dp.drink();
     }
 }
 
-sealed interface Drinkable permits  Coke, Juice{}
+//sealed interface Drinkable permits  Coke, Juice{}
+sealed interface Drinkable permits  Coke, Juice{
+    String name();
+}
 
 final class Juice implements Drinkable{
-    String name(){
+    public String name(){
         return "쥬스";
     }
 }
 
 sealed class Coke implements Drinkable permits CC, PC{ //sealed가 오면 permits가 와야 한다.
-    String name(){
+    public String name(){
         return "콜라";
     }
 }
@@ -41,19 +51,32 @@ class Pesticide{
     }
 }
 
-class Drink<T extends Drinkable> { //extends Drinkable을 넣어줘서 Drinakable의 자식 타입만 들어오도록 한다.
-    T t;
+//class Drink<T extends Drinkable> { //extends Drinkable을 넣어줘서 Drinakable의 자식 타입만 들어오도록 한다.
+//    T t;
+//
+//    public Drink(T t) {
+//        this.t = t;
+//    }
+//
+//    void drink(){
+//        if(t instanceof Coke c)
+//            System.out.println(c.name()+ "를 마신다.");
+//        else if(t instanceof Juice j)
+//            System.out.println(j.name()+ "를 마신다.");
+//        else if(t instanceof Pesticide p)
+//            System.out.println(p.name()+ "를 마신다.");
+//    }
+//}
 
-    public Drink(T t) {
-        this.t = t;
+
+class Drink{
+    Drinkable d;
+
+    public Drink(Drinkable d) {
+        this.d = d;
     }
 
     void drink(){
-        if(t instanceof Coke c)
-            System.out.println(c.name()+ "를 마신다.");
-        else if(t instanceof Juice j)
-            System.out.println(j.name()+ "를 마신다.");
-        else if(t instanceof Pesticide p)
-            System.out.println(p.name()+ "를 마신다.");
+        System.out.println(d.name() +"를 마신다.");
     }
 }

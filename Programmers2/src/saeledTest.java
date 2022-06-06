@@ -32,6 +32,9 @@ final class UC extends CC{}
 
 non-sealed class PC extends Coke {}
 
+class PC1 extends PC{} //non-sealed로 만드어서 아무거나 만들어도 된다. sealed는 자식 클래스를 제한한다. final은 끝나서 자식이 없다.
+class PC2 extends PC{}
+
 class Pesticide{
     String name(){
         return "농약";

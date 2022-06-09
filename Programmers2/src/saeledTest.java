@@ -1,4 +1,4 @@
-public class saeledTest {
+public class saeledTest {//주석처리한게 generic타입이고 두 번째로 푼게 봉입 타입이니꺼 둘 다 풀어보기
     public static void main(String[] args) {
 
 //        Drink<Coke> dc = new Drink<>(new Coke()); //선언된 항목을 넣어주기
